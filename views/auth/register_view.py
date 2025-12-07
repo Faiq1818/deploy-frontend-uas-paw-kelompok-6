@@ -32,8 +32,8 @@ def register(request):
     # hash the password
     bytes = req_data.password.encode("utf-8")
     salt = bcrypt.gensalt()
-    hash = bcrypt.hashpw(bytes, salt)
-    
+    hash = bcrypt.hashpw(bytes, salt).decode("utf-8")
+
     user_id = None
     with Session() as session:
         new_user = User(

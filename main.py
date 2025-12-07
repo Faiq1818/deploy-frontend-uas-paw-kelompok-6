@@ -5,10 +5,13 @@ import hupper
 
 def main():
     with Configurator() as config:
-        # Route
+        # route
         config.add_route("home", "/api")
         config.add_route("chatai", "/api/chatai")
+
+        # auth
         config.add_route("register", "/api/auth/register")
+        config.add_route("login", "/api/auth/login")
 
         # config.include("views")
         config.scan("views")
