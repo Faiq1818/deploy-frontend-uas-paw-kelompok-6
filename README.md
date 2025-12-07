@@ -2,31 +2,11 @@
 > Kode utama backend python pyramid tugas besar Pemrograman Aplikasi Web
 
 ## Installation
-
-### Setup Python
-1. Clone repository
-```sh
-git clone https://github.com/Tugas-Besar-Pemrograman-Aplikasi-Web/Pyramid-Backend.git
-```
-2. Masuk ke root repository
-```sh
-cd Pyramid-Backend/
-```
-3. Buat virtual env
-```sh
-python -m venv env
-```
-4. Source activate
-```sh
-source env/bin/activate
-```
-5. Install dependensi
-```sh
-pip install -r requirements.txt
-```
+1. postgres
+2. python314+
 
 ### Setup postgres:
-1. Buat database
+1. Masuk ke shell psql dan buat database
 ```sh
 CREATE DATABASE uas_pengweb;
 ```
@@ -65,6 +45,28 @@ ALTER DEFAULT PRIVILEGES FOR ROLE alembic_user IN SCHEMA public
 GRANT USAGE, SELECT ON SEQUENCES TO app_prod_user;
 ```
 
+### Setup Python
+1. Clone repository
+```sh
+git clone https://github.com/Tugas-Besar-Pemrograman-Aplikasi-Web/Pyramid-Backend.git
+```
+2. Masuk ke root repository
+```sh
+cd Pyramid-Backend/
+```
+3. Buat virtual env
+```sh
+python -m venv env
+```
+4. Source activate
+```sh
+source env/bin/activate
+```
+5. Install dependensi
+```sh
+pip install -r requirements.txt
+```
+
 ### Setup Alembic:
 1. Autogenerate migration
 ```sh
@@ -73,5 +75,11 @@ alembic revision --autogenerate -m "initiate"
 2. Upgrade head
 ```sh
 alembic upgrade head
+```
+
+### Run aplikasi:
+1. Run main.py
+```sh
+python main.py
 ```
 
