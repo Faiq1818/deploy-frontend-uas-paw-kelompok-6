@@ -14,6 +14,9 @@ def main():
         ## packages
         config.add_route("packages", "/api/packages/packages")
 
+        ## destinations
+        config.add_route("destinations", "/api/destinations/destinations")
+
         config.scan("views")
         app = config.make_wsgi_app()
 

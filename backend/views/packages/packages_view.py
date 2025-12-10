@@ -26,9 +26,10 @@ def packages(request):
         req_data = FromRequest(**request.json_body)
     except ValidationError as err:
         return Response(json_body={"error": str(err.errors())}, status=400)
+
     # check agentid
     with Session() as session:
-        stmt = select(User).where(User.id == request.payload["sub"])
+        stmt = select(User).where(User.id == request.jwt_claims["sub"])
         try:
             result = session.execute(stmt).scalars().one()
             if not result:
