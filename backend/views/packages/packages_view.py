@@ -71,7 +71,7 @@ def get_packages(request):
 @view_config(route_name="packages", request_method="POST", renderer="json")
 @jwt_validate
 def create_package(request):
-    if request.jwt_claims.get("role") != "agent":
+    if request.jwt_claims["role"] != "agent":
         return Response(json_body={"error": "Forbidden : Only agent can access"}, status=403)
 
     try:

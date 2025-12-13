@@ -149,3 +149,51 @@ Authorization: Bearer {token}
   "role": "tourist"
 }
 ```
+---
+
+## Packages
+### POST /api/packages
+**Create new package (agent only)**
+**Headers:**
+```
+Authorization: Bearer {token}
+Content-Type: application/json
+```
+**Request Body:**
+```json
+{
+  "destinationId": "uuid-here", //string
+  "name": "Bali Adventure Package", //string
+  "duration": 5, //number
+  "price": 2500.0,  //number
+  "itinerary": "Day 1: Arrival...", //string
+  "maxTravelers": 8, //string
+  "contactPhone": "+62 812-3456-7890", //string
+  "images": ["url1", "url2"] //array of string
+}
+```
+**Response (201 Created):**
+```json
+{
+  "id": "uuid-here",
+  "agentId": "uuid-from-token",
+  "destinationId": "uuid-here",
+  "name": "Bali Adventure Package",
+  "duration": 5,
+  "price": 2500.0,
+  "itinerary": "Day 1: Arrival...",
+  "maxTravelers": 8,
+  "contactPhone": "+62 812-3456-7890",
+  "images": ["url1", "url2"],
+  "rating": null,
+  "reviewsCount": 0,
+  "destinationName": "Bali",
+  "country": Indonesia
+}
+```
+**Validation:**
+- `duration` must be > 0
+- `price` must be > 0
+- `maxTravelers` must be > 0
+- `images` array must have at least 1 image
+---
