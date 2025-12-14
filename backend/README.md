@@ -202,6 +202,39 @@ Authorization: Bearer {token}
 
 ---
 
+## Destinations
+### GET /api/destinations
+**Get all destinations**
+**Query Parameters:**
+- `country` (optional): Filter by country
+- `search` (optional): Search by name or description
+**Response (200 OK):**
+```json
+[
+  {
+    "id": "uuid-here",
+    "name": "Maldives",
+    "description": "Crystal clear waters and luxurious overwater villas...",
+    "photoUrl": "https://example.com/image.jpg",
+    "country": "Maldives"
+  }
+]
+```
+---
+### GET /api/destinations/:id
+**Get destination by ID**
+**Response (200 OK):**
+```json
+{
+  "id": "uuid-here",
+  "name": "Maldives",
+  "description": "Crystal clear waters...",
+  "photoUrl": "https://example.com/image.jpg",
+  "country": "Maldives"
+}
+```
+---
+
 ## Packages
 
 ### GET /api/packages
@@ -232,8 +265,8 @@ Authorization: Bearer {token}
   "images": ["url1", "url2"],
   "rating": 4.8,
   "reviewsCount": 245,
-  "destinationName": Bali,
-  "country": Indonesia
+  "destinationName": "Bali",
+  "country": "Indonesia"
 }
 ```
 
@@ -1175,4 +1208,98 @@ curl -X POST "http://localhost:6543/api/payment/generate" \
   }'
 ```
 
+---
+
+### GET /api/packages/{id}
+**Get package by ID with full details**
+**Response (200 OK):**
+```json
+{
+  "id": "uuid-here",
+  "agentId": "uuid-here",
+  "destinationId": "uuid-here",
+  "name": "Maldives Paradise Retreat",
+  "duration": 7,
+  "price": 3500.0,
+  "itinerary": "Day 1-2: Arrival and resort check-in...",
+  "maxTravelers": 4,
+  "contactPhone": "+62 812-3456-7890",
+  "images": ["url1", "url2", "url3"],
+  "rating": 4.8,
+  "reviewsCount": 245,
+  "destinationName": "Maldives",
+  "country": "Indonesia",
+}
+```
+---
+### PUT /api/packages/:id
+**Update package (Agent only, own packages)**
+**Headers:**
+```
+Authorization: Bearer {token}
+Content-Type: application/json
+```
+**Request Body:** (all fields optional)
+```json
+{
+  "name": "Updated Package Name",
+  "duration": 6,
+  "price": 2800.0,
+  "itinerary": "Updated itinerary...",
+  "maxTravelers": 10,
+  "contactPhone": "+62 812-9999-9999",
+  "images": ["url1", "url2", "url3"]
+}
+```
+**Response (200 OK):**
+```json
+{
+  "id": "uuid-here",
+  "agentId": "uuid-here",
+  "destinationId": "uuid-here",
+  "name": "Maldives Paradise Retreat",
+  "duration": 7,
+  "price": 3500.0,
+  "itinerary": "Day 1-2: Arrival and resort check-in...",
+  "maxTravelers": 4,
+  "contactPhone": "+62 812-3456-7890",
+  "images": ["url1", "url2", "url3"],
+  "rating": 4.8,
+  "reviewsCount": 245,
+  "destinationName": "Maldives",
+  "country": "Indonesia",
+}
+```
+### DELETE /api/packages/:id
+**Delete package (Agent only, own packages, no bookings)**
+**Headers:**
+```
+Authorization: Bearer {token}
+```
+**Response (200 OK)**
+---
+
+### GET /api/packages/agent/:agentId
+**Get all packages by agent**
+**Response (200 OK):**
+```json
+[
+  {
+    "id": "uuid-here",
+    "agentId": "uuid-here",
+    "destinationId": "uuid-here",
+    "name": "Package 1",
+    "duration": 7,
+    "price": 3500.0,
+    "itinerary": "...",
+    "maxTravelers": 4,
+    "contactPhone": "+62 812-3456-7890",
+    "images": ["url1"],
+    "rating": 4.8,
+    "reviewsCount": 245,
+    "destinationName": "Bali"
+    "country": "Indonesia"
+  }
+]
+```
 ---
