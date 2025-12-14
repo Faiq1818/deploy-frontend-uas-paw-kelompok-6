@@ -203,12 +203,16 @@ Authorization: Bearer {token}
 ---
 
 ## Destinations
+
 ### GET /api/destinations
+
 **Get all destinations**
 **Query Parameters:**
+
 - `country` (optional): Filter by country
 - `search` (optional): Search by name or description
-**Response (200 OK):**
+  **Response (200 OK):**
+
 ```json
 [
   {
@@ -220,10 +224,14 @@ Authorization: Bearer {token}
   }
 ]
 ```
+
 ---
+
 ### GET /api/destinations/:id
+
 **Get destination by ID**
 **Response (200 OK):**
+
 ```json
 {
   "id": "uuid-here",
@@ -233,6 +241,7 @@ Authorization: Bearer {token}
   "country": "Maldives"
 }
 ```
+
 ---
 
 ## Packages
@@ -1211,8 +1220,10 @@ curl -X POST "http://localhost:6543/api/payment/generate" \
 ---
 
 ### GET /api/packages/{id}
+
 **Get package by ID with full details**
 **Response (200 OK):**
+
 ```json
 {
   "id": "uuid-here",
@@ -1228,18 +1239,24 @@ curl -X POST "http://localhost:6543/api/payment/generate" \
   "rating": 4.8,
   "reviewsCount": 245,
   "destinationName": "Maldives",
-  "country": "Indonesia",
+  "country": "Indonesia"
 }
 ```
+
 ---
+
 ### PUT /api/packages/:id
+
 **Update package (Agent only, own packages)**
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 Content-Type: application/json
 ```
+
 **Request Body:** (all fields optional)
+
 ```json
 {
   "name": "Updated Package Name",
@@ -1251,7 +1268,9 @@ Content-Type: application/json
   "images": ["url1", "url2", "url3"]
 }
 ```
+
 **Response (200 OK):**
+
 ```json
 {
   "id": "uuid-here",
@@ -1267,21 +1286,26 @@ Content-Type: application/json
   "rating": 4.8,
   "reviewsCount": 245,
   "destinationName": "Maldives",
-  "country": "Indonesia",
+  "country": "Indonesia"
 }
 ```
+
 ### DELETE /api/packages/:id
+
 **Delete package (Agent only, own packages, no bookings)**
 **Headers:**
+
 ```
 Authorization: Bearer {token}
 ```
-**Response (200 OK)**
----
+
+## **Response (200 OK)**
 
 ### GET /api/packages/agent/:agentId
+
 **Get all packages by agent**
 **Response (200 OK):**
+
 ```json
 [
   {
@@ -1302,4 +1326,5 @@ Authorization: Bearer {token}
   }
 ]
 ```
+
 ---
