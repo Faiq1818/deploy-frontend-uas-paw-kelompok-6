@@ -1,7 +1,9 @@
 import hupper
+import json
 from waitress import serve
 from pyramid.config import Configurator
 from pyramid.request import Request
+from pyramid.renderers import JSON
 from db import Session
 
 
@@ -20,6 +22,16 @@ def main():
     with Configurator() as config:
         # Set custom request factory
         config.set_request_factory(DBRequest)
+        
+        # Setup pretty JSON renderer
+        json_renderer = JSON()
+        json_renderer.serializer = lambda obj, **kwargs: json.dumps(
+            obj, 
+            indent=2, 
+            ensure_ascii=False,
+            default=str
+        )
+        config.add_renderer('json', json_renderer)
         
         # route
         ## auth
