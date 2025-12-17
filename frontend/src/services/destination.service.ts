@@ -35,10 +35,16 @@ export const searchDestinations = async (
 
 // Create destination (Admin only)
 export const createDestination = async (
-  data: FormData
+  data: FormData | Record<string, unknown>
 ): Promise<Destination> => {
-  const response = await apiClient.post<Destination>("/api/destinations", data, {
-    headers: { "Content-Type": "multipart/form-data" }
-  });
-  return response.data;
+  if (data instanceof FormData) {
+    const response = await apiClient.post<Destination>("/api/destinations", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
+  } else {
+    // Send as JSON (backend may accept JSON payload with photoUrl)
+    const response = await apiClient.post<Destination>("/api/destinations", data);
+    return response.data;
+  }
 };

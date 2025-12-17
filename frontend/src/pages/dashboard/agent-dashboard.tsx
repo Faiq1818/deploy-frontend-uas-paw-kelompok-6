@@ -218,13 +218,26 @@ export default function AgentDashboard() {
               Welcome back, {user?.name}!
             </p>
           </div>
-          <Button
-            onClick={() => navigate("/create-package")}
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            <Plus className="mr-2 h-4 w-4" />
-            Create Package
-          </Button>
+
+          <div className="flex flex-col gap-3 p-2 sm:flex-row sm:items-center sm:gap-4">
+            <Button
+              onClick={() => navigate("/create-package")}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 sm:w-auto"
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Create Package
+            </Button>
+
+            <Button
+              onClick={() => navigate("/create-destination")}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 sm:w-auto"
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Create Destination
+            </Button>
+          </div>
+
+
         </div>
 
         {/* Stats */}

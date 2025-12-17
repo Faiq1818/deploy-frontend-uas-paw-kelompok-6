@@ -16,6 +16,7 @@ import {
 import LandingPage from "@/pages/landing-page";
 
 // Lazy load all other pages
+const DestinationsPage = lazy(() => import("@/pages/destinations-page"));
 const PackagesPage = lazy(() => import("@/pages/packages-page"));
 const PackageDetailPage = lazy(() => import("@/pages/package-detail-page"));
 const BookingPage = lazy(() => import("@/pages/booking-page"));
@@ -23,6 +24,7 @@ const BookingSuccessPage = lazy(() => import("@/pages/booking-success-page"));
 const AllBookingsPage = lazy(() => import("@/pages/all-bookings-page"));
 const ManagePackagesPage = lazy(() => import("@/pages/manage-packages-page"));
 const CreatePackagePage = lazy(() => import("@/pages/create-package-page"));
+const CreateDestinationPage = lazy(() => import("@/pages/create-destination-page"));
 const EditPackagePage = lazy(() => import("@/pages/edit-package-page"));
 const AboutPage = lazy(() => import("@/pages/about-page"));
 const ContactPage = lazy(() => import("@/pages/contact-page"));
@@ -93,6 +95,15 @@ export default function App() {
               </Suspense>
             }
           />
+          <Route
+  path="/destinations"
+  element={
+    <Suspense fallback={<GenericPageSkeleton />}>
+      <DestinationsPage />
+    </Suspense>
+  }
+/>
+
 
           {/* Auth */}
           <Route
@@ -150,6 +161,14 @@ export default function App() {
             element={
               <Suspense fallback={<GenericPageSkeleton />}>
                 <CreatePackagePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/create-destination"
+            element={
+              <Suspense fallback={<GenericPageSkeleton />}>
+                <CreateDestinationPage />
               </Suspense>
             }
           />

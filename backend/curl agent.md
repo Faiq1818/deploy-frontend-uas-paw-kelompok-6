@@ -461,7 +461,6 @@ curl -X GET http://localhost:6543/api/analytics/agent/stats \
    ```bash
    TOKEN=$(curl ... | jq -r '.token')
    ```
-
 2. **Replace Placeholders**:
 
    - `YOUR_JWT_TOKEN` → Token from login response
@@ -470,23 +469,18 @@ curl -X GET http://localhost:6543/api/analytics/agent/stats \
    - `BOOKING_ID` → ID from get bookings response
    - `TOURIST_ID` → Tourist's user ID
    - `QRIS_ID` → ID from create QRIS response
-
 3. **Workflow Order**:
 
    ```
    Auth → Create Destination → Create Package
    → Monitor Bookings → Verify Payments → Update Status → View Analytics
    ```
-
 4. **Booking Status Values**: `pending`, `confirmed`, `completed`, `cancelled`
-
 5. **For Testing**: Use environment variables:
 
    ```bash
    DEST_ID=$(curl ... | jq -r '.id')
    PKG_ID=$(curl ... -d '{"destinationId": "'$DEST_ID'"}' | jq -r '.id')
    ```
-
 6. **File Upload**: Use `-F` flag for multipart form data (images, photos, QRIS)
-
 7. **Only Manage Your Own Packages**: Agents can only create and manage packages they own
