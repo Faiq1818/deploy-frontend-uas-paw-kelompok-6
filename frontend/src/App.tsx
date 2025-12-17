@@ -36,6 +36,7 @@ const TouristDashboard = lazy(() => import("@/pages/dashboard/tourist-dashboard"
 const AgentDashboard = lazy(() => import("@/pages/dashboard/agent-dashboard"));
 const SignIn = lazy(() => import("@/pages/auth/sign-in").then((m) => ({ default: m.SignIn })));
 const SignUp = lazy(() => import("@/pages/auth/sign-up").then((m) => ({ default: m.SignUp })));
+const CreateDestinationPage = lazy(() => import("@/pages/create-destination-page"));
 
 function DashboardRouter() {
   const { user } = useAuthStore();
@@ -180,6 +181,16 @@ export default function App() {
               <ProtectedRoute allowedRoles={["agent"]}>
                 <Suspense fallback={<GenericPageSkeleton />}>
                   <CreatePackagePage />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create-destination"
+            element={
+              <ProtectedRoute allowedRoles={["agent"]}>
+                <Suspense fallback={<GenericPageSkeleton />}>
+                  <CreateDestinationPage />
                 </Suspense>
               </ProtectedRoute>
             }

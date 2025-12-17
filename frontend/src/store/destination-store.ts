@@ -21,6 +21,7 @@ interface DestinationStore {
   createPackage: (data: packageService.CreatePackageRequest) => Promise<Package>;
   updatePackage: (id: string, updates: packageService.UpdatePackageRequest) => Promise<void>;
   deletePackage: (id: string) => Promise<void>;
+  createDestination: (data: any) => Promise<Destination>;
   
   // Getters
   getPackagesByDestination: (destinationId: string) => Package[];
@@ -110,6 +111,21 @@ export const useDestinationStore = create<DestinationStore>((set, get) => ({
         packages: state.packages.filter((pkg) => pkg.id !== id),
         isLoading: false,
       }));
+    } catch (error) {
+      set({ error: (error as Error).message, isLoading: false });
+      throw error;
+    }
+  },
+
+  createDestination: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const newDestination = await destinationService.createDestination(data instanceof FormData ? data : data);
+      set((state) => ({
+        destinations: [...state.destinations, newDestination],
+        isLoading: false,
+      }));
+      return newDestination;
     } catch (error) {
       set({ error: (error as Error).message, isLoading: false });
       throw error;
