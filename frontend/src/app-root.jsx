@@ -31,6 +31,8 @@ const TouristDashboard = lazy(() => import("@/pages/dashboard/tourist-dashboard"
 const AgentDashboard = lazy(() => import("@/pages/dashboard/agent-dashboard"));
 const SignIn = lazy(() => import("@/pages/auth/sign-in").then((m) => ({ default: m.SignIn })));
 const SignUp = lazy(() => import("@/pages/auth/sign-up").then((m) => ({ default: m.SignUp })));
+const EditDestinationPage = lazy(() => import("@/pages/edit-destination-page"));
+const ManageDestinationsPage = lazy(() => import("@/pages/manage-destinations-page"));
 
 function DashboardRouter() {
   const { user } = useAuthStore();
@@ -153,6 +155,17 @@ export default function App() {
             }
           />
           <Route
+              path="/manage-destinations"
+              element={
+
+                  <Suspense fallback={<DashboardPageSkeleton />}>
+                    <ManageDestinationsPage />
+                  </Suspense>
+
+              }
+            />
+
+          <Route
             path="/create-package"
             element={
               <Suspense fallback={<GenericPageSkeleton />}>
@@ -168,6 +181,17 @@ export default function App() {
               </Suspense>
             }
           />
+          <Route
+            path="/edit-destination/:id"
+            element={
+             
+                <Suspense fallback={<GenericPageSkeleton />}>
+                  <EditDestinationPage />
+                </Suspense>
+           
+            }
+          />
+
           <Route
             path="/edit-package/:id"
             element={
