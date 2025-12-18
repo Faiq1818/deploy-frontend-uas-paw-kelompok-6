@@ -18,7 +18,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": "http://localhost:6543",
+      "/api": "api.faiqerlangga.my.id",
     },
   },
   build: {
